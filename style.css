@@ -42,13 +42,18 @@ li a:hover {
     padding: 10px;
 }
 
-table,td,th {
+/* table,td,th {
     border: 1px solid #dddddd;
-}
+} */
 
 td,th {
     height: 25px;
     padding: 5px;
+}
+
+th {
+    background-color: #080;
+    color: white;
 }
 
 .box {

@@ -28,6 +28,33 @@ for (x in gamtamcap) {
 
 // recursiveRows(players);
 
+const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
+
+getPlayerData()
+
+function getPlayerData() {
+	var originaldata = playerlist;
+	var request = new XMLHttpRequest();
+	request.open('GET', originaldata);
+	request.responseType = 'json';
+	request.send();
+
+	request.onload = function() {
+        var maindata = request.response;
+        newplayers = [];
+        for (x in maindata) {
+            if (maindata[x]["team"]) {
+                newplayers.push(maindata[x]);
+            }
+            // console.log(sumObject(maindata[x]["breakdown"]));
+        }
+        newplayers.sort(function(a,b) {
+            return sumObject(b.breakdown) - sumObject(a.breakdown);
+        })
+        recursiveRows(newplayers);
+    }
+}
+
 function recursiveRows(playerarr) {
     if (document.querySelectorAll("td.breakdown").length == playerarr.length) {
         createBreakdown(playerarr);
@@ -235,33 +262,6 @@ function createBreakdown(playerarr) {
     document.getElementById("tastotal").innerHTML = formatDollars(gamtotal+tamtotal+captotal);
     document.getElementById("tasspent").innerHTML = formatDollars(gamspent+tamspent+capspent);
     document.getElementById("tasremaining").innerHTML = formatDollars(gamremaining+tamremaining+capremaining);
-}
-
-const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
-
-getPlayerData()
-
-function getPlayerData() {
-	var originaldata = playerlist;
-	var request = new XMLHttpRequest();
-	request.open('GET', originaldata);
-	request.responseType = 'json';
-	request.send();
-
-	request.onload = function() {
-        var maindata = request.response;
-        newplayers = [];
-        for (x in maindata) {
-            if (maindata[x]["team"]) {
-                newplayers.push(maindata[x]);
-            }
-            // console.log(sumObject(maindata[x]["breakdown"]));
-        }
-        newplayers.sort(function(a,b) {
-            return sumObject(b.breakdown) - sumObject(a.breakdown);
-        })
-        recursiveRows(newplayers);
-    }
 }
 
 function sumObject(obj) {
