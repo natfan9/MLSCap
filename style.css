@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    background-color: green;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+
+li {
+    float: left;
+    margin-right: 5px;
+    background-color: #080;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #040;
+}
+
+.hoverbox {
+    opacity: 0;
+}
+
+.main {
+    width: 85%;
+    margin: auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+table,td,th {
+    border: 1px solid #dddddd;
+}
+
+td,th {
+    height: 25px;
+    padding: 5px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    width: 47.5%;
+    float: left;
+    margin: 10px;
+    padding: 5px;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+}
+
+.svgheader {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td.name {
+    width: 15%;
+}
+
+td.salary,td.status {
+    width: 7.5%;
+    text-align: center;
+}
+
+td.breakdown {
+    width: 70%;
+    padding: 0px 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:hover {
+    background-color: #dddddd;
+}
