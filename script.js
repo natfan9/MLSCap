@@ -237,12 +237,12 @@ function createBreakdown(playerarr) {
     document.getElementById("tasremaining").innerHTML = formatDollars(gamremaining+tamremaining+capremaining);
 }
 
-const toiUrl = "https://natfan9.github.io/Ovechkin-Tracker/playerlist.json";
+const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
 
 getPlayerData()
 
 function getPlayerData() {
-	var originaldata = toiUrl;
+	var originaldata = playerlist;
 	var request = new XMLHttpRequest();
 	request.open('GET', originaldata);
 	request.responseType = 'json';
