@@ -1,7 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: smaller;
-    background-color: green;
+    background-color: #001f5b;
 }
 
 ul {
@@ -15,7 +15,7 @@ ul {
 li {
     float: left;
     margin-right: 5px;
-    background-color: #080;
+    background-color: #c7231f;
 }
 
 li a {
@@ -27,7 +27,7 @@ li a {
 }
 
 li a:hover {
-    background-color: #040;
+    background-color: #a72325;
 }
 
 .hoverbox {
@@ -47,12 +47,12 @@ li a:hover {
 } */
 
 td,th {
-    height: 25px;
+    height: 20px;
     padding: 5px;
 }
 
 th {
-    background-color: #080;
+    background-color: #c7231f;
     color: white;
 }
 

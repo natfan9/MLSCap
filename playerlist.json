@@ -221,4 +221,27 @@
     "base salary": "unknown",
     "guaranteed comp": "unknown",
     "transfer fee": "unknown",
+    "aquisition method": "unknown"},
+{"name": "Random Player 19",
+    "team": "Example",
+    "position": "CB",
+    "nationality": "N/A",
+    "status": [
+        "HGP"],
+    "breakdown": {
+        "cap": 85000},
+    "base salary": "unknown",
+    "guaranteed comp": "unknown",
+    "transfer fee": "unknown",
+    "aquisition method": "unknown"},
+{"name": "Random Player 20",
+    "team": "Example",
+    "position": "GK",
+    "nationality": "N/A",
+    "status": [],
+    "breakdown": {
+        "cap": 75000},
+    "base salary": "unknown",
+    "guaranteed comp": "unknown",
+    "transfer fee": "unknown",
     "aquisition method": "unknown"}]
