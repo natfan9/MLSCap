@@ -2,6 +2,7 @@
     "team": "Example",
     "position": "CM",
     "nationality": "COL",
+    "roster": "senior",
     "status": [],
     "breakdown": {
         "TAM": 900000,
@@ -14,6 +15,7 @@
     "team": "Example",
     "position": "FW",
     "nationality": "USA",
+    "roster": "senior",
     "status": [
         "DP"],
     "breakdown": {
@@ -27,6 +29,7 @@
     "team": "Example",
     "position": "LW",
     "nationality": "URU",
+    "roster": "senior",
     "status": [
         "YDP",
         "INTL"],
@@ -41,6 +44,7 @@
     "team": "Example",
     "position": "CM",
     "nationality": "MEX",
+    "roster": "senior",
     "status": [
         "DP",
         "INTL"],
@@ -55,6 +59,7 @@
     "team": "Example",
     "position": "CB",
     "nationality": "USA",
+    "roster": "senior",
     "status": [],
     "breakdown": {
         "TAM": 750000,
@@ -67,6 +72,7 @@
     "team": "Example",
     "position": "CB",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -80,6 +86,7 @@
     "team": "Example",
     "position": "RW",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -94,6 +101,7 @@
     "team": "Example",
     "position": "GK",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "HGP"],
     "breakdown": {
@@ -107,6 +115,7 @@
     "team": "Example",
     "position": "RB",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [],
     "breakdown": {
         "GAM": 100000,
@@ -119,6 +128,7 @@
     "team": "Example",
     "position": "LB",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -132,6 +142,7 @@
     "team": "Example",
     "position": "DM",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -144,6 +155,7 @@
     "team": "Example",
     "position": "MF",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "HGP"],
     "breakdown": {
@@ -156,6 +168,7 @@
     "team": "Example",
     "position": "FW",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -168,6 +181,7 @@
     "team": "Example",
     "position": "RW",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "INTL"],
     "breakdown": {
@@ -180,6 +194,7 @@
     "team": "Example",
     "position": "RB",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [],
     "breakdown": {
         "cap": 75000},
@@ -191,6 +206,7 @@
     "team": "Example",
     "position": "GK",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "HGP"],
     "breakdown": {
@@ -203,6 +219,7 @@
     "team": "Example",
     "position": "CM",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [],
     "breakdown": {
         "cap": 75000},
@@ -214,6 +231,7 @@
     "team": "Example",
     "position": "DM",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "HGP"],
     "breakdown": {
@@ -226,6 +244,7 @@
     "team": "Example",
     "position": "CB",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [
         "HGP"],
     "breakdown": {
@@ -238,7 +257,36 @@
     "team": "Example",
     "position": "GK",
     "nationality": "N/A",
+    "roster": "senior",
     "status": [],
+    "breakdown": {
+        "cap": 75000},
+    "base salary": "unknown",
+    "guaranteed comp": "unknown",
+    "transfer fee": "unknown",
+    "aquisition method": "unknown"},
+{"name": "Supplemental Player 1",
+    "team": "Example",
+    "position": "LW",
+    "nationality": "N/A",
+    "roster": "supplemental",
+    "status": [
+        "HGP"
+    ],
+    "breakdown": {
+        "cap": 75000},
+    "base salary": "unknown",
+    "guaranteed comp": "unknown",
+    "transfer fee": "unknown",
+    "aquisition method": "unknown"},
+{"name": "Supplemental Player 2",
+    "team": "Example",
+    "position": "RW",
+    "nationality": "N/A",
+    "roster": "supplemental",
+    "status": [
+        "HGP"
+    ],
     "breakdown": {
         "cap": 75000},
     "base salary": "unknown",

@@ -43,7 +43,7 @@ function getPlayerData() {
         var maindata = request.response;
         newplayers = [];
         for (x in maindata) {
-            if (maindata[x]["team"]) {
+            if (maindata[x]["team"] == "Example") {
                 newplayers.push(maindata[x]);
             }
             // console.log(sumObject(maindata[x]["breakdown"]));
@@ -51,12 +51,22 @@ function getPlayerData() {
         newplayers.sort(function(a,b) {
             return sumObject(b.breakdown) - sumObject(a.breakdown);
         })
-        recursiveRows(newplayers);
+        var seniorplayers = [];
+        var supplplayers = [];
+        for (y in newplayers) {
+            if (newplayers[y]["roster"] == "senior") {
+                seniorplayers.push(newplayers[y]);
+            } else if (newplayers[y]["roster"] == "supplemental") {
+                supplplayers.push(newplayers[y]);
+            }
+        }
+        recursiveRows(seniorplayers,"senior");
+        recursiveRows(supplplayers,"supplemental");
     }
 }
 
-function recursiveRows(playerarr) {
-    if (document.querySelectorAll("td.breakdown").length == playerarr.length) {
+function recursiveRows(playerarr,roster) {
+    if (document.querySelectorAll("#" + roster + "table td.breakdown").length == playerarr.length) {
         createBreakdown(playerarr);
         /*for (p = 0, plen = playerarr.length; p < plen; p++) {
             var parent = document.getElementById(playerarr[p]);
@@ -131,27 +141,27 @@ function recursiveRows(playerarr) {
             }
             statuscell.innerHTML = "<b> "+playerstatus+" </b>";
         }*/
-    } else if (document.querySelectorAll("td.breakdown").length > playerarr.length) {
+    } else if (document.querySelectorAll("#" + roster + "table td.breakdown").length > playerarr.length) {
         console.log("THERE'S MORE ROWS THAN PLAYERS");
-        items = document.querySelectorAll("td.breakdown");
-        parent = items[document.querySelectorAll("td.breakdown").length-1].parentElement;
+        items = document.querySelectorAll("#" + roster + "table td.breakdown");
+        parent = items[document.querySelectorAll("#" + roster + "table td.breakdown").length-1].parentElement;
         parent.remove();
-        recursiveRows(playerarr);
-    } else if (document.querySelectorAll("td.breakdown").length < playerarr.length) {
+        recursiveRows(playerarr,roster);
+    } else if (document.querySelectorAll("#" + roster + "table td.breakdown").length < playerarr.length) {
         console.log("THERE'S MORE PLAYERS THAN ROWS");
-        table = document.getElementById("maintable").firstElementChild;
+        table = document.getElementById(roster + "table").firstElementChild;
         var row = document.createElement("tr");
         var namecell = document.createElement("td");
-        namecell.setAttribute("id","nameplayer"+(document.querySelectorAll("td.breakdown").length+1));
+        namecell.setAttribute("id","nameplayer"+(document.querySelectorAll("#" + roster + "table td.breakdown").length+1));
         row.appendChild(namecell);
 
         var statuscell = document.createElement("td");
-        statuscell.setAttribute("id","statusplayer"+(document.querySelectorAll("td.breakdown").length+1));
+        statuscell.setAttribute("id","statusplayer"+(document.querySelectorAll("#" + roster + "table td.breakdown").length+1));
         statuscell.setAttribute("class","status");
         row.appendChild(statuscell);
 
         var salarycell = document.createElement("td");
-        salarycell.setAttribute("id","salplayer"+(document.querySelectorAll("td.breakdown").length+1));
+        salarycell.setAttribute("id","salplayer"+(document.querySelectorAll("#" + roster + "table td.breakdown").length+1));
         salarycell.setAttribute("class","salary");
         row.appendChild(salarycell);
 
@@ -160,13 +170,13 @@ function recursiveRows(playerarr) {
 
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("height",barheight);
-        svg.setAttribute("id","player"+(document.querySelectorAll("td.breakdown").length+1))
+        svg.setAttribute("id","player"+(document.querySelectorAll("#" + roster + "table td.breakdown").length+1))
         breakdowncell.appendChild(svg);
 
         row.appendChild(breakdowncell);
 
         table.appendChild(row);
-        recursiveRows(playerarr);
+        recursiveRows(playerarr,roster);
     }
 }
 
