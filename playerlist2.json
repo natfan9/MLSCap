@@ -1,4 +1,19 @@
-[{"name": "Random Player 6",
+[{"name": "Random Player 8",
+    "team": "Example",
+    "position": "GK",
+    "nationality": "N/A",
+    "roster": "senior",
+    "status": [
+        "HGP"],
+    "base salary": 75000,
+    "guaranteed comp": 75000,
+    "transfer fee": 0,
+    "contract years": 5,
+    "buydown": {
+        "amount": 125000,
+        "mechanism": "GAM"},
+    "aquisition method": "unknown"},
+{"name": "Random Player 6",
     "team": "Example",
     "position": "CB",
     "nationality": "N/A",
@@ -10,7 +25,8 @@
     "transfer fee": 1000000,
     "contract years": 4,
     "buydown": {
-        "TAM": 600000},
+        "amount": 600000,
+        "mechanism": "TAM"},
     "aquisition method": "unknown"},
 {"name": "Eduard Atuesta",
     "team": "Example",
@@ -23,5 +39,6 @@
     "transfer fee": 2400000,
     "contract years": 3,
     "buydown": {
-        "TAM": 900000},
+        "amount": 900000,
+        "mechanism": "TAM"},
     "aquisition method": "unknown"}]
