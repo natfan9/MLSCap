@@ -8,6 +8,7 @@
     "base salary": 100000,
     "guaranteed comp": 100000,
     "transfer fee": 300000,
+    "contract years": 4,
     "aquisition method": "unknown"},
 {"name": "Random Player 8",
     "team": "Example",
