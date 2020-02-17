@@ -1,0 +1,13 @@
+[{"name": "Eduard Atuesta",
+    "team": "Example",
+    "position": "CM",
+    "nationality": "COL",
+    "roster": "senior",
+    "status": [],
+    "base salary": 650000,
+    "guaranteed comp": 650000,
+    "transfer fee": 2400000,
+    "contract years": 3,
+    "buydown": {
+        "TAM": 900000},
+    "aquisition method": "unknown"}]
