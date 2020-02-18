@@ -29,11 +29,12 @@ for (x in gamtamcap) {
 // recursiveRows(players);
 
 const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
+const playerlist2 = "https://natfan9.github.io/MLSCap/playerlist adv.json";
 
 getPlayerData()
 
 function getPlayerData() {
-	var originaldata = playerlist;
+	var originaldata = playerlist2;
 	var request = new XMLHttpRequest();
 	request.open('GET', originaldata);
 	request.responseType = 'json';
@@ -49,7 +50,7 @@ function getPlayerData() {
             // console.log(sumObject(maindata[x]["breakdown"]));
         }
         newplayers.sort(function(a,b) {
-            return sumObject(b.breakdown) - sumObject(a.breakdown);
+            return getBudgetCharge(b) - getBudgetCharge(a);
         })
         var seniorplayers = [];
         var supplplayers = [];
@@ -61,7 +62,7 @@ function getPlayerData() {
             }
         }
         recursiveRows(seniorplayers,"senior");
-        recursiveRows(supplplayers,"supplemental");
+        // recursiveRows(supplplayers,"supplemental");
     }
 }
 
@@ -183,8 +184,8 @@ function recursiveRows(playerarr,roster) {
 function createBreakdown(playerarr,roster) {
     for (p = 0, plen = playerarr.length; p < plen; p++) {
         var parent = document.getElementById(roster + "player" + (p+1));
-        var widthsum = interp(sumObject(playerarr[p]["breakdown"]),0,maxtamcharge,0,maxwidth);
-        var moneysum = sumObject(playerarr[p]["breakdown"]);
+        var widthsum = interp(getBudgetCharge(playerarr[p]),0,maxtamcharge,0,maxwidth);
+        var moneysum = getBudgetCharge(playerarr[p]);
         if (moneysum > maxtamcharge) {
             parent.setAttributeNS(null, "width", maxwidth);
         } else {
@@ -193,8 +194,82 @@ function createBreakdown(playerarr,roster) {
         width = widthsum;
         xpos = 0;
         salaryparent = document.getElementById("sal" + roster + "player" + (p+1));
-        salaryparent.innerHTML = formatDollars(sumObject(playerarr[p]["breakdown"]));
-        for (x in playerarr[p]["breakdown"]) {
+        salaryparent.innerHTML = formatDollars(moneysum);
+
+        if (playerarr[p]["buydown"]) {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("x","0");
+            svg.setAttribute("y","0");
+            svg.setAttribute("width",width);
+            svg.setAttribute("height",barheight);
+            parent.appendChild(svg);
+
+            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("width",widthsum);
+            rect.setAttribute("height",barheight);
+            rect.setAttribute("ry",barheight/2);
+            switch (playerarr[p]["buydown"]["mechanism"]) {
+                case "TAM":
+                    rect.setAttribute("style",colors[2]);
+                    break;
+                case "GAM":
+                    rect.setAttribute("style",colors[1]);
+                    break;
+                default:
+                    rect.setAttribute("style",colors[3]);
+            }
+            svg.appendChild(rect);
+
+            width -= interp(playerarr[p]["buydown"]["amount"],0,maxtamcharge,0,maxwidth);
+
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("x","0");
+            svg.setAttribute("y","0");
+            svg.setAttribute("width",width);
+            svg.setAttribute("height",barheight);
+            parent.appendChild(svg);
+
+            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("width",widthsum);
+            rect.setAttribute("height",barheight);
+            rect.setAttribute("ry",barheight/2);
+            rect.setAttribute("style",colors[0]);
+            svg.appendChild(rect);
+
+            if (playerarr[p]["buydown"]["mechanism"] == "GAM") {
+                gamspent += playerarr[p]["buydown"]["amount"];
+                gamremaining -= playerarr[p]["buydown"]["amount"];
+            } else if (playerarr[p]["buydown"]["mechanism"] == "TAM") {
+                tamspent += playerarr[p]["buydown"]["amount"];
+                tamremaining -= playerarr[p]["buydown"]["amount"];
+            }
+
+            if (playerarr[p]["status"].includes("HGP") == false) {
+                var caphit = moneysum - playerarr[p]["buydown"]["amount"];
+                capspent += caphit;
+                capremaining -= caphit;
+            }
+        } else {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("x","0");
+            svg.setAttribute("y","0");
+            svg.setAttribute("width",width);
+            svg.setAttribute("height",barheight);
+            parent.appendChild(svg);
+
+            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("width",widthsum);
+            rect.setAttribute("height",barheight);
+            rect.setAttribute("ry",barheight/2);
+            rect.setAttribute("style",colors[0]);
+            svg.appendChild(rect);
+
+            if (playerarr[p]["status"].includes("HGP") == false) {
+                capspent += moneysum;
+                capremaining -= moneysum;
+            }
+        }
+        /*for (x in playerarr[p]["breakdown"]) {
             var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             svg.setAttribute("x","0");
             svg.setAttribute("y","0");
@@ -240,14 +315,12 @@ function createBreakdown(playerarr,roster) {
                 tamspent += playerarr[p]["breakdown"][x];
                 tamremaining -= playerarr[p]["breakdown"][x];
             }
-            
-            if (playerarr[p]["status"].includes("HGP") == false) {
-                if (x == "cap") {
-                    capspent += playerarr[p]["breakdown"][x];
-                    capremaining -= playerarr[p]["breakdown"][x];
-                }
+    
+            if (x == "cap") {
+                capspent += playerarr[p]["breakdown"][x];
+                capremaining -= playerarr[p]["breakdown"][x];
             }
-        }
+        }*/
         statuscell = document.getElementById("status" + roster + "player" + (p+1));
         var playerstatus = "";
         for (y in playerarr[p]["status"]) {
@@ -274,6 +347,10 @@ function createBreakdown(playerarr,roster) {
     document.getElementById("tastotal").innerHTML = formatDollars(gamtotal+tamtotal+captotal);
     document.getElementById("tasspent").innerHTML = formatDollars(gamspent+tamspent+capspent);
     document.getElementById("tasremaining").innerHTML = formatDollars(gamremaining+tamremaining+capremaining);
+}
+
+function getBudgetCharge(obj) {
+    return obj["base salary"] + (obj["transfer fee"] / obj["contract years"]);
 }
 
 function sumObject(obj) {
