@@ -1,8 +1,25 @@
-[{"name": "Random Player 16",
+[{"name": "Reserve Player 1",
+    "team": "Example",
+    "position": "CM",
+    "nationality": "N/A",
+    "roster": "reserve",
+    "status": [
+        "HGP"],
+    "base salary": {
+        "2018": 57000,
+        "2019": 57000,
+        "2020": 57000,
+        "2021": 75000,
+        "2022": 75000},
+    "guaranteed comp": 75000,
+    "transfer fee": 0,
+    "contract years": 5,
+    "aquisition method": "HGP"},
+{"name": "Supplemental Player 1",
     "team": "Example",
     "position": "GK",
     "nationality": "N/A",
-    "roster": "senior",
+    "roster": "supplemental",
     "status": [
         "HGP"],
     "base salary": {
