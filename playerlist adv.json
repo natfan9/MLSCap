@@ -1,4 +1,22 @@
-[{"name": "Random Player 7",
+[{"name": "Random Player 2",
+    "team": "Example",
+    "position": "AM",
+    "nationality": "ESP",
+    "roster": "senior",
+    "status": [
+        "DP"
+        "INTL"],
+    "base salary": {
+        "2019": 2100000,
+        "2020": 2100000},
+    "guaranteed comp": 2337500,
+    "transfer fee": 1800000,
+    "contract years": 2,
+    "buydown": {
+        "amount": 1450000,
+        "mechanism": "DP"},
+    "aquisition method": "unknown"},
+{"name": "Random Player 7",
     "team": "Example",
     "position": "CF",
     "nationality": "BRA",
