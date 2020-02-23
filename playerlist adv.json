@@ -6,11 +6,11 @@
     "status": [
         "HGP"],
     "base salary": {
-        "year1": 75000,
-        "year2": 75000,
-        "year3": 75000,
-        "year4": 85000,
-        "year5": 100000},
+        "2018": 75000,
+        "2019": 75000,
+        "2020": 75000,
+        "2021": 85000,
+        "2022": 100000},
     "guaranteed comp": 75000,
     "transfer fee": 0,
     "contract years": 5,
@@ -23,10 +23,10 @@
     "status": [
         "INTL"],
     "base salary": {
-        "year1": 90000,
-        "year2": 100000,
-        "year3": 110000,
-        "year4": 100000},
+        "2018": 90000,
+        "2019": 100000,
+        "2020": 110000,
+        "2021": 100000},
     "guaranteed comp": 100000,
     "transfer fee": 300000,
     "contract years": 4,
@@ -38,7 +38,12 @@
     "roster": "senior",
     "status": [
         "HGP"],
-    "base salary": 375000,
+    "base salary": {
+        "2017": 250000,
+        "2018": 375000,
+        "2019": 500000,
+        "2020": 500000,
+        "2021": 500000},
     "guaranteed comp": 375000,
     "transfer fee": 0,
     "contract years": 5,
