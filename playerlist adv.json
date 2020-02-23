@@ -13,6 +13,9 @@
     "guaranteed comp": 788750,
     "transfer fee": 1800000,
     "contract years": 4,
+    "buydown": {
+        "amount": 685000,
+        "mechanism": "TAM"},
     "aquisition method": "International Transfer"},
 {"name": "Reserve Player 1",
     "team": "Example",
