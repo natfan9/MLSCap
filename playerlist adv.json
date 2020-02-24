@@ -14,7 +14,7 @@
     "transfer fee": 3000000,
     "contract years": 4,
     "buydown": {
-        "amount": 875000,
+        "amount": 925000,
         "mechanism": "DP"},
     "aquisition method": "International Transfer",
     "basis": "paul arriola"},
