@@ -308,7 +308,7 @@ function createBreakdown(playerarr,roster) {
     document.getElementById("GAMtotal").innerHTML = formatDollars(gamtotal);
     document.getElementById("GAMspent").innerHTML = formatDollars(gamspent);
     document.getElementById("GAMremaining").innerHTML = formatDollars(gamremaining);
-    // document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
+    document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
 
     document.getElementById("TAMtotal").innerHTML = formatDollars(tamtotal);
     document.getElementById("TAMspent").innerHTML = formatDollars(tamspent);
