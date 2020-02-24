@@ -10,7 +10,8 @@
         <div class="header">
             <h1>Sample Team</h1>
             <ul>
-                <li><a href="index.html">Salary Breakdown</a></li>
+                <li><a href="index.html">Salaries</a></li>
+                <li><a href="transactions.html">Transactions</a></li>
                 <li><a href="gam.html">GAM</a></li>
             </ul>
             <!--Available Spend
@@ -29,11 +30,11 @@
                 </svg>
             </svg>-->
         </div>
-        <div class="box">
+        <!--<div class="box">
             <h3>Tradable Assets</h3>
             GAM: <span id="tradableGAM"></span><br>
             International Spots: <span>1</span>
-        </div>
+        </div>-->
         <div class="box">
             <table>
                 <tr>
@@ -68,68 +69,145 @@
                 </tr>
             </table>
         </div>
-        <table id="seniortable">
-            <tr>
-                <th class="name">Senior Roster</th>
-                <th class="status">Status</th>
-                <th class="salary">Salary(?)</th>
-                <th class="breakdown">Breakdown</th>
-            </tr>
-            <tr>
-                <td id="nameseniorplayer1"></td>
-                <td id="statusseniorplayer1" class="status"></td>
-                <td id="salseniorplayer1" class="salary"></td>
-                <td class="breakdown">
-                    <svg height="18" id="seniorplayer1">
-                        <!--<rect width="500" height="15" ry="10"></rect>
-                        <svg x="0" y="0" width="500" height="15">
-                            <rect width="500" height="15" ry="10" style="fill:#FFE048"></rect>
+        <div class="header">
+        <ul>
+            <li><a onclick="switchTable('salarybreakdown',this)" id="default" class="tab">Current Year Buydowns</a></li>
+            <li><a onclick="switchTable('futures',this)" class="tab">Base Salaries</a></li>
+        </ul>
+        </div>
+        <div class="tables" id="salarybreakdown">
+            <table id="seniortable">
+                <tr>
+                    <th class="name">Senior Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="breakdown">Breakdown</th>
+                </tr>
+                <tr>
+                    <td id="nameseniorplayer1"></td>
+                    <td id="statusseniorplayer1" class="status"></td>
+                    <td id="salseniorplayer1" class="salary"></td>
+                    <td class="breakdown">
+                        <svg height="18" id="seniorplayer1">
+                            <!--<rect width="500" height="15" ry="10"></rect>
+                            <svg x="0" y="0" width="500" height="15">
+                                <rect width="500" height="15" ry="10" style="fill:#FFE048"></rect>
+                            </svg>
+                            <svg x="0" y="0" width="300" height="15">
+                                <rect width="500" height="15" ry="10" style="fill:#3FDF3F"></rect>
+                            </svg>
+                            <svg x="0" y="0" width="200" height="15">
+                                <rect width="500" height="15" ry="10" style="fill:#FF4848"></rect>
+                            </svg>
+                            <svg x="0" y="0" width="15" height="15">
+                                <rect width="500" height="15" ry="10" style="fill:#6A4BCD"></rect>
+                            </svg>-->
                         </svg>
-                        <svg x="0" y="0" width="300" height="15">
-                            <rect width="500" height="15" ry="10" style="fill:#3FDF3F"></rect>
-                        </svg>
-                        <svg x="0" y="0" width="200" height="15">
-                            <rect width="500" height="15" ry="10" style="fill:#FF4848"></rect>
-                        </svg>
-                        <svg x="0" y="0" width="15" height="15">
-                            <rect width="500" height="15" ry="10" style="fill:#6A4BCD"></rect>
-                        </svg>-->
-                    </svg>
-                </td>
-            </tr>
-        </table><br>
-        <table id="supplementaltable">
-            <tr>
-                <th class="name">Supplemental Roster</th>
-                <th class="status">Status</th>
-                <th class="salary">Salary(?)</th>
-                <th class="breakdown">Breakdown</th>
-            </tr>
-            <tr>
-                <td id="namesupplementalplayer1"></td>
-                <td id="statussupplementalplayer1" class="status"></td>
-                <td id="salsupplementalplayer1" class="salary"></td>
-                <td class="breakdown">
-                    <svg height="18" id="supplementalplayer1"></svg>
-                </td>
-            </tr>
-        </table><br>
-        <table id="reservetable">
-            <tr>
-                <th class="name">Reserve Roster</th>
-                <th class="status">Status</th>
-                <th class="salary">Salary(?)</th>
-                <th class="breakdown">Breakdown</th>
-            </tr>
-            <tr>
-                <td id="namereserveplayer1"></td>
-                <td id="statusreserveplayer1" class="status"></td>
-                <td id="salreserveplayer1" class="salary"></td>
-                <td class="breakdown">
-                    <svg height="18" id="reserveplayer1"></svg>
-                </td>
-            </tr>
-        </table><br>
+                    </td>
+                </tr>
+            </table><br>
+            <table id="supplementaltable">
+                <tr>
+                    <th class="name">Supplemental Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="breakdown">Breakdown</th>
+                </tr>
+                <tr>
+                    <td id="namesupplementalplayer1"></td>
+                    <td id="statussupplementalplayer1" class="status"></td>
+                    <td id="salsupplementalplayer1" class="salary"></td>
+                    <td class="breakdown">
+                        <svg height="18" id="supplementalplayer1"></svg>
+                    </td>
+                </tr>
+            </table><br>
+            <table id="reservetable">
+                <tr>
+                    <th class="name">Reserve Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="breakdown">Breakdown</th>
+                </tr>
+                <tr>
+                    <td id="namereserveplayer1"></td>
+                    <td id="statusreserveplayer1" class="status"></td>
+                    <td id="salreserveplayer1" class="salary"></td>
+                    <td class="breakdown">
+                        <svg height="18" id="reserveplayer1"></svg>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tables" id="futures">
+            <table id="seniorfuturestable">
+                <tr>
+                    <th class="name">Senior Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="years">2020</th>
+                    <th class="years">2021</th>
+                    <th class="years">2022</th>
+                    <th class="years">2023</th>
+                    <th class="years">2024</th>
+                </tr>
+                <tr>
+                    <td id="futuresnameseniorplayer1"></td>
+                    <td id="futuresstatusseniorplayer1" class="status"></td>
+                    <td id="futuressalseniorplayer1" class="salary"></td>
+                    <td id="futuresyear2020seniorplayer1" class="years"></td>
+                    <td id="futuresyear2021seniorplayer1" class="years"></td>
+                    <td id="futuresyear2022seniorplayer1" class="years"></td>
+                    <td id="futuresyear2023seniorplayer1" class="years"></td>
+                    <td id="futuresyear2024seniorplayer1" class="years"></td>
+                </tr>
+            </table><br>
+            <table id="supplementalfuturestable">
+                <tr>
+                    <th class="name">Supplemental Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="years">2020</th>
+                    <th class="years">2021</th>
+                    <th class="years">2022</th>
+                    <th class="years">2023</th>
+                    <th class="years">2024</th>
+                </tr>
+                <tr>
+                    <td id="futuresnamesupplementalplayer1"></td>
+                    <td id="futuresstatussupplementalplayer1" class="status"></td>
+                    <td id="futuressalsupplementalplayer1" class="salary"></td>
+                    <td id="futuresyear2020supplementalplayer1" class="years"></td>
+                    <td id="futuresyear2021supplementalplayer1" class="years"></td>
+                    <td id="futuresyear2022supplementalplayer1" class="years"></td>
+                    <td id="futuresyear2023supplementalplayer1" class="years"></td>
+                    <td id="futuresyear2024supplementalplayer1" class="years"></td>
+                </tr>
+            </table><br>
+            <table id="reservefuturestable">
+                <tr>
+                    <th class="name">Reserve Roster</th>
+                    <th class="status">Status</th>
+                    <th class="salary">Base Cap Hit</th>
+                    <th class="years">2020</th>
+                    <th class="years">2021</th>
+                    <th class="years">2022</th>
+                    <th class="years">2023</th>
+                    <th class="years">2024</th>
+                </tr>
+                <tr>
+                    <td id="futuresnamereserveplayer1"></td>
+                    <td id="futuresstatusreserveplayer1" class="status"></td>
+                    <td id="futuressalreserveplayer1" class="salary"></td>
+                    <td id="futuresyear2020reserveplayer1" class="years"></td>
+                    <td id="futuresyear2021reserveplayer1" class="years"></td>
+                    <td id="futuresyear2022reserveplayer1" class="years"></td>
+                    <td id="futuresyear2023reserveplayer1" class="years"></td>
+                    <td id="futuresyear2024reserveplayer1" class="years"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
         <table id="gamtable">
             <tr>
                 <th></th>
@@ -178,6 +256,6 @@
         Salary Budget spent: <span id="capspent"></span><br>
         Salary Budget remaining: <span id="capremaining"></span><br>-->
     </div>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script adv.js"></script>
 </body>
 </html>

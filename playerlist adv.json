@@ -6,10 +6,10 @@
     "status": [
         "DP"],
     "base salary": {
-        "2017": 675000,
-        "2018": 675000,
+        "2017": 336000,
+        "2018": 625000,
         "2019": 675000,
-        "2020": 675000},
+        "2020": 725000},
     "guaranteed comp": 707000,
     "transfer fee": 3000000,
     "contract years": 4,
@@ -134,8 +134,7 @@
     "position": "DM",
     "nationality": "N/A",
     "roster": "senior",
-    "status": [
-        "INTL"],
+    "status": [],
     "base salary": {
         "2018": 90000,
         "2019": 100000,

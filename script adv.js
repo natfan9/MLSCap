@@ -1,5 +1,5 @@
 var maxbudgetcharge = 550000;
-var maxtamcharge = 1550000;
+var maxtamcharge = maxbudgetcharge + 1000000;
 var maxwidth = 0;
 var barheight = 18;
 var gamtotal = 2725000;
@@ -14,6 +14,8 @@ var captotal = 4900000;
 var capspent = 0;
 var capremaining = 4900000;
 
+var currentyear = 2020;
+
 var cellwidth = document.getElementsByClassName("breakdown")[0].offsetWidth;
 maxwidth = cellwidth-20;
 
@@ -27,6 +29,23 @@ for (x in gamtamcap) {
 }
 
 // recursiveRows(players);
+
+function switchTable(pageName, elmnt) {
+    // Hide all elements with class="tabcontent" by default
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tables");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Show the specific tab content
+    document.getElementById(pageName).style.display = "block";
+}
+
+window.onload = function(){
+	//document.getElementById("weightedpure").click();
+	document.getElementById("default").click();
+}
 
 const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
 const playerlist2 = "https://natfan9.github.io/MLSCap/playerlist adv.json";
@@ -54,19 +73,26 @@ function getPlayerData() {
         })
         var seniorplayers = [];
         var supplplayers = [];
+        var reserveplayers = [];
         for (y in newplayers) {
             if (newplayers[y]["roster"] == "senior") {
                 seniorplayers.push(newplayers[y]);
             } else if (newplayers[y]["roster"] == "supplemental") {
                 supplplayers.push(newplayers[y]);
+            } else if (newplayers[y]["roster"] == "reserve") {
+                reserveplayers.push(newplayers[y]);
             }
         }
-        recursiveRows(seniorplayers,"senior");
-        // recursiveRows(supplplayers,"supplemental");
+        recursiveRowsBreakdown(seniorplayers,"senior");
+        recursiveRowsFutures(seniorplayers,"senior");
+        recursiveRowsBreakdown(supplplayers,"supplemental");
+        recursiveRowsFutures(supplplayers,"supplemental");
+        recursiveRowsBreakdown(reserveplayers,"reserve");
+        recursiveRowsFutures(reserveplayers,"reserve");
     }
 }
 
-function recursiveRows(playerarr,roster) {
+function recursiveRowsBreakdown(playerarr,roster) {
     if (document.querySelectorAll("#" + roster + "table td.breakdown").length == playerarr.length) {
         createBreakdown(playerarr,roster);
         /*for (p = 0, plen = playerarr.length; p < plen; p++) {
@@ -147,7 +173,7 @@ function recursiveRows(playerarr,roster) {
         items = document.querySelectorAll("#" + roster + "table td.breakdown");
         parent = items[document.querySelectorAll("#" + roster + "table td.breakdown").length-1].parentElement;
         parent.remove();
-        recursiveRows(playerarr,roster);
+        recursiveRowsBreakdown(playerarr,roster);
     } else if (document.querySelectorAll("#" + roster + "table td.breakdown").length < playerarr.length) {
         console.log("THERE'S MORE PLAYERS THAN ROWS");
         table = document.getElementById(roster + "table").firstElementChild;
@@ -177,7 +203,7 @@ function recursiveRows(playerarr,roster) {
         row.appendChild(breakdowncell);
 
         table.appendChild(row);
-        recursiveRows(playerarr,roster);
+        recursiveRowsBreakdown(playerarr,roster);
     }
 }
 
@@ -244,7 +270,7 @@ function createBreakdown(playerarr,roster) {
                 tamremaining -= playerarr[p]["buydown"]["amount"];
             }
 
-            if (playerarr[p]["status"].includes("HGP") == false) {
+            if (playerarr[p]["status"].includes("HGP") == false && roster == "senior") {
                 var caphit = moneysum - playerarr[p]["buydown"]["amount"];
                 capspent += caphit;
                 capremaining -= caphit;
@@ -269,58 +295,6 @@ function createBreakdown(playerarr,roster) {
                 capremaining -= moneysum;
             }
         }
-        /*for (x in playerarr[p]["breakdown"]) {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("x","0");
-            svg.setAttribute("y","0");
-            svg.setAttribute("width",width);
-            svg.setAttribute("height",barheight);
-            parent.appendChild(svg);
-            
-            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("width",widthsum);
-            rect.setAttribute("height",barheight);
-            rect.setAttribute("ry",barheight/2);
-            switch (x) {
-                case "TAM":
-                    rect.setAttribute("style",colors[2]);
-                    break;
-                case "GAM":
-                    rect.setAttribute("style",colors[1]);
-                    break;
-                case "cap":
-                    rect.setAttribute("style",colors[0]);
-                    break;
-                default:
-                    rect.setAttribute("style",colors[3]);
-            }
-            svg.appendChild(rect);
-    
-            var hoverbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            hoverbox.setAttribute("width",interp(playerarr[p]["breakdown"][x],0,maxtamcharge,0,maxwidth));
-            hoverbox.setAttribute("height",barheight);
-            hoverbox.setAttribute("x",width-interp(playerarr[p]["breakdown"][x],0,maxtamcharge,0,maxwidth));
-            hoverbox.setAttribute("class","hoverbox")
-            svg.appendChild(hoverbox);
-    
-            width -= interp(playerarr[p]["breakdown"][x],0,maxtamcharge,0,maxwidth);
-            xpos += interp(playerarr[p]["breakdown"][x],0,maxtamcharge,0,maxwidth);
-    
-            if (x == "GAM") {
-                gamspent += playerarr[p]["breakdown"][x];
-                gamremaining -= playerarr[p]["breakdown"][x];
-            }
-    
-            if (x == "TAM") {
-                tamspent += playerarr[p]["breakdown"][x];
-                tamremaining -= playerarr[p]["breakdown"][x];
-            }
-    
-            if (x == "cap") {
-                capspent += playerarr[p]["breakdown"][x];
-                capremaining -= playerarr[p]["breakdown"][x];
-            }
-        }*/
         statuscell = document.getElementById("status" + roster + "player" + (p+1));
         var playerstatus = "";
         for (y in playerarr[p]["status"]) {
@@ -334,7 +308,7 @@ function createBreakdown(playerarr,roster) {
     document.getElementById("GAMtotal").innerHTML = formatDollars(gamtotal);
     document.getElementById("GAMspent").innerHTML = formatDollars(gamspent);
     document.getElementById("GAMremaining").innerHTML = formatDollars(gamremaining);
-    document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
+    // document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
 
     document.getElementById("TAMtotal").innerHTML = formatDollars(tamtotal);
     document.getElementById("TAMspent").innerHTML = formatDollars(tamspent);
@@ -349,8 +323,90 @@ function createBreakdown(playerarr,roster) {
     document.getElementById("tasremaining").innerHTML = formatDollars(gamremaining+tamremaining+capremaining);
 }
 
+function recursiveRowsFutures(playerarr,roster) {
+    if (document.querySelectorAll("#" + roster + "futurestable td.salary").length == playerarr.length) {
+        setSalaries(playerarr,roster);
+    } else if (document.querySelectorAll("#" + roster + "futurestable td.salary").length > playerarr.length) {
+        console.log("THERE'S MORE ROWS THAN PLAYERS");
+        items = document.querySelectorAll("#" + roster + "futurestable td.salary");
+        parent = items[document.querySelectorAll("#" + roster + "futurestable td.salary").length-1].parentElement;
+        parent.remove();
+        recursiveRowsBreakdown(playerarr,roster);
+    } else if (document.querySelectorAll("#" + roster + "futurestable td.salary").length < playerarr.length) {
+        console.log("THERE'S MORE PLAYERS THAN ROWS");
+        table = document.getElementById(roster + "futurestable").firstElementChild;
+        var row = document.createElement("tr");
+        var namecell = document.createElement("td");
+        namecell.setAttribute("id","futuresname" + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        row.appendChild(namecell);
+
+        var statuscell = document.createElement("td");
+        statuscell.setAttribute("id","futuresstatus" + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        statuscell.setAttribute("class","status");
+        row.appendChild(statuscell);
+
+        var salarycell = document.createElement("td");
+        salarycell.setAttribute("id","futuressal" + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        salarycell.setAttribute("class","salary");
+        row.appendChild(salarycell);
+
+        var yearcell1 = document.createElement("td");
+        yearcell1.setAttribute("id","futuresyear" + currentyear + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        yearcell1.setAttribute("class","years");
+        row.appendChild(yearcell1);
+
+        var yearcell2 = document.createElement("td");
+        yearcell2.setAttribute("id","futuresyear" + (currentyear + 1) + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        yearcell2.setAttribute("class","years");
+        row.appendChild(yearcell2);
+
+        var yearcell3 = document.createElement("td");
+        yearcell3.setAttribute("id","futuresyear" + (currentyear + 2) + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        yearcell3.setAttribute("class","years");
+        row.appendChild(yearcell3);
+
+        var yearcell4 = document.createElement("td");
+        yearcell4.setAttribute("id","futuresyear" + (currentyear + 3) + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        yearcell4.setAttribute("class","years");
+        row.appendChild(yearcell4);
+
+        var yearcell5 = document.createElement("td");
+        yearcell5.setAttribute("id","futuresyear" + (currentyear + 4) + roster + "player"+(document.querySelectorAll("#" + roster + "futurestable td.salary").length+1));
+        yearcell5.setAttribute("class","years");
+        row.appendChild(yearcell5);
+
+        table.appendChild(row);
+        recursiveRowsFutures(playerarr,roster);
+    }
+}
+
+function setSalaries(playerarr,roster) {
+    for (p = 0, plen = playerarr.length; p < plen; p++) {
+        var moneysum = getBudgetCharge(playerarr[p]);
+        salaryparent = document.getElementById("futuressal" + roster + "player" + (p+1));
+        salaryparent.innerHTML = formatDollars(moneysum);
+        statuscell = document.getElementById("futuresstatus" + roster + "player" + (p+1));
+        var playerstatus = "";
+        for (y in playerarr[p]["status"]) {
+            playerstatus += " " + playerarr[p]["status"][y] + " ";
+            // console.log(playerarr[p]["status"][y]);
+        }
+        statuscell.innerHTML = "<b> "+playerstatus+" </b>";
+        namecell = document.getElementById("futuresname" + roster + "player" + (p+1));
+        namecell.innerHTML = playerarr[p]["name"];
+        for (x in playerarr[p]["base salary"]) {
+            if (parseInt(x) >= 2020) {
+                salarycell = document.getElementById("futuresyear" + x + roster + "player" + (p+1));
+                salarycell.innerHTML = formatDollars(playerarr[p]["base salary"][x]);
+                // console.log(x);
+                // console.log(playerarr[p]["base salary"][x]);
+            }
+        }
+    }
+}
+
 function getBudgetCharge(obj) {
-    return obj["base salary"] + (obj["transfer fee"] / obj["contract years"]);
+    return obj["base salary"][currentyear] + (obj["transfer fee"] / obj["contract years"]);
 }
 
 function sumObject(obj) {
@@ -361,14 +417,24 @@ function sumObject(obj) {
     return sum;
 }
 
+function avgObject(obj) {
+    var sum = 0;
+    for (x in obj) {
+        sum += obj[x];
+    }
+    var avg = sum / Object.keys(obj).length
+    return avg;
+}
+
 function interp(input,basemin,basemax,convmin,convmax) {
     output = (convmin*(basemax-input)+convmax*(input-basemin))/(basemax-basemin)
     return output;
 }
 
 function formatDollars(number) {
-    if (number < 0) {
-        abs = Math.abs(number);
+    var rounded = Math.round(number);
+    if (rounded < 0) {
+        abs = Math.abs(rounded);
         str = abs.toString();
         reverse = "";
         for (x in str) {
@@ -389,7 +455,7 @@ function formatDollars(number) {
         output = "-$" + output;
         return output;
     } else {
-        str = number.toString();
+        str = rounded.toString();
         reverse = "";
         for (x in str) {
             if (x % 3 == 0) {

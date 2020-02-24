@@ -6,7 +6,7 @@ body {
 
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     overflow: hidden;
     
@@ -28,6 +28,14 @@ li a {
 
 li a:hover {
     background-color: #a72325;
+}
+
+li a.tab {
+    background-color: #001f5b;
+}
+
+li a.tab:hover {
+    background-color: #001235;
 }
 
 .hoverbox {
@@ -58,8 +66,8 @@ th {
 
 .box {
     border: 1px solid #ddd;
-    width: 47.5%;
-    float: left;
+    width: 50%;
+    /*float: left;*/
     margin: 10px;
     padding: 5px;
 }
@@ -87,6 +95,11 @@ td.salary,td.status {
 td.breakdown {
     width: 70%;
     padding: 0px 10px;
+}
+
+td.years {
+    width: 14%;
+    text-align: center;
 }
 
 table {

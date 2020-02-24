@@ -28,6 +28,23 @@ for (x in gamtamcap) {
 
 // recursiveRows(players);
 
+function switchTable(pageName, elmnt) {
+    // Hide all elements with class="tabcontent" by default
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tables");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Show the specific tab content
+    document.getElementById(pageName).style.display = "block";
+}
+
+window.onload = function(){
+	//document.getElementById("weightedpure").click();
+	document.getElementById("default").click();
+}
+
 const playerlist = "https://natfan9.github.io/MLSCap/playerlist.json";
 
 getPlayerData()
@@ -240,7 +257,7 @@ function createBreakdown(playerarr,roster) {
                 tamspent += playerarr[p]["breakdown"][x];
                 tamremaining -= playerarr[p]["breakdown"][x];
             }
-            
+
             if (playerarr[p]["status"].includes("HGP") == false) {
                 if (x == "cap") {
                     capspent += playerarr[p]["breakdown"][x];
@@ -261,7 +278,7 @@ function createBreakdown(playerarr,roster) {
     document.getElementById("GAMtotal").innerHTML = formatDollars(gamtotal);
     document.getElementById("GAMspent").innerHTML = formatDollars(gamspent);
     document.getElementById("GAMremaining").innerHTML = formatDollars(gamremaining);
-    document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
+    // document.getElementById("tradableGAM").innerHTML = formatDollars(gamremaining);
 
     document.getElementById("TAMtotal").innerHTML = formatDollars(tamtotal);
     document.getElementById("TAMspent").innerHTML = formatDollars(tamspent);
@@ -290,8 +307,9 @@ function interp(input,basemin,basemax,convmin,convmax) {
 }
 
 function formatDollars(number) {
-    if (number < 0) {
-        abs = Math.abs(number);
+    var rounded = Math.round(number);
+    if (rounded < 0) {
+        abs = Math.abs(rounded);
         str = abs.toString();
         reverse = "";
         for (x in str) {
@@ -312,7 +330,7 @@ function formatDollars(number) {
         output = "-$" + output;
         return output;
     } else {
-        str = number.toString();
+        str = rounded.toString();
         reverse = "";
         for (x in str) {
             if (x % 3 == 0) {
