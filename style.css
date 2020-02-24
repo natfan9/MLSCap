@@ -83,22 +83,26 @@ th {
     margin-right: auto;
 }
 
-td.name {
+th.name {
     width: 15%;
+    min-width: 135px;
 }
 
 td.salary,td.status {
     width: 7.5%;
+    min-width: 67.5px;
     text-align: center;
 }
 
 td.breakdown {
     width: 70%;
+    min-width: 630px;
     padding: 0px 10px;
 }
 
 td.years {
     width: 14%;
+    min-width: 126px;
     text-align: center;
 }
 
@@ -117,4 +121,8 @@ tr:nth-child(odd) {
 
 tr:hover {
     background-color: #dddddd;
+}
+
+div.tables {
+    overflow-x: auto;
 }
