@@ -13,9 +13,6 @@
     "guaranteed comp": 707000,
     "transfer fee": 3000000,
     "contract years": 4,
-    "buydown": {
-        "amount": 925000,
-        "mechanism": "DP"},
     "aquisition method": "International Transfer",
     "basis": "paul arriola"},
 {"name": "Random Player 9",
@@ -70,9 +67,6 @@
     "guaranteed comp": 2337500,
     "transfer fee": 1800000,
     "contract years": 2,
-    "buydown": {
-        "amount": 2450000,
-        "mechanism": "DP"},
     "aquisition method": "International Transfer",
     "basis": "carles gil"},
 {"name": "Random Player 7",
