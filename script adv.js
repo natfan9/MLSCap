@@ -221,78 +221,187 @@ function createBreakdown(playerarr,roster) {
         xpos = 0;
         salaryparent = document.getElementById("sal" + roster + "player" + (p+1));
         salaryparent.innerHTML = formatDollars(moneysum);
+        
+        if (playerarr[p]["status"].includes("DP") || playerarr[p]["status"].includes("YDP")) {
+            var dpoverage = moneysum - maxbudgetcharge;
+            if (playerarr[p]["buydown"]) {
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
 
-        if (playerarr[p]["buydown"]) {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("x","0");
-            svg.setAttribute("y","0");
-            svg.setAttribute("width",width);
-            svg.setAttribute("height",barheight);
-            parent.appendChild(svg);
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[3]);
+                svg.appendChild(rect);
 
-            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("width",widthsum);
-            rect.setAttribute("height",barheight);
-            rect.setAttribute("ry",barheight/2);
-            switch (playerarr[p]["buydown"]["mechanism"]) {
-                case "TAM":
-                    rect.setAttribute("style",colors[2]);
-                    break;
-                case "GAM":
-                    rect.setAttribute("style",colors[1]);
-                    break;
-                default:
-                    rect.setAttribute("style",colors[3]);
-            }
-            svg.appendChild(rect);
+                width -= interp(dpoverage,0,maxtamcharge,0,maxwidth);
 
-            width -= interp(playerarr[p]["buydown"]["amount"],0,maxtamcharge,0,maxwidth);
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
 
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("x","0");
-            svg.setAttribute("y","0");
-            svg.setAttribute("width",width);
-            svg.setAttribute("height",barheight);
-            parent.appendChild(svg);
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                switch (playerarr[p]["buydown"]["mechanism"]) {
+                    case "TAM":
+                        rect.setAttribute("style",colors[2]);
+                        break;
+                    case "GAM":
+                        rect.setAttribute("style",colors[1]);
+                        break;
+                    default:
+                        rect.setAttribute("style",colors[3]);
+                }
+                svg.appendChild(rect);
 
-            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("width",widthsum);
-            rect.setAttribute("height",barheight);
-            rect.setAttribute("ry",barheight/2);
-            rect.setAttribute("style",colors[0]);
-            svg.appendChild(rect);
+                width -= interp(playerarr[p]["buydown"]["amount"],0,maxtamcharge,0,maxwidth);
 
-            if (playerarr[p]["buydown"]["mechanism"] == "GAM") {
-                gamspent += playerarr[p]["buydown"]["amount"];
-                gamremaining -= playerarr[p]["buydown"]["amount"];
-            } else if (playerarr[p]["buydown"]["mechanism"] == "TAM") {
-                tamspent += playerarr[p]["buydown"]["amount"];
-                tamremaining -= playerarr[p]["buydown"]["amount"];
-            }
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
 
-            if (playerarr[p]["status"].includes("HGP") == false && roster == "senior") {
-                var caphit = moneysum - playerarr[p]["buydown"]["amount"];
-                capspent += caphit;
-                capremaining -= caphit;
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[0]);
+                svg.appendChild(rect);
+
+                if (playerarr[p]["buydown"]["mechanism"] == "GAM") {
+                    gamspent += playerarr[p]["buydown"]["amount"];
+                    gamremaining -= playerarr[p]["buydown"]["amount"];
+                } else if (playerarr[p]["buydown"]["mechanism"] == "TAM") {
+                    tamspent += playerarr[p]["buydown"]["amount"];
+                    tamremaining -= playerarr[p]["buydown"]["amount"];
+                }
+
+                if (playerarr[p]["status"].includes("HGP") == false && roster == "senior") {
+                    var caphit = moneysum - dpoverage - playerarr[p]["buydown"]["amount"];
+                    capspent += caphit;
+                    capremaining -= caphit;
+                }
+            } else {
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
+
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[3]);
+                svg.appendChild(rect);
+
+                width -= interp(dpoverage,0,maxtamcharge,0,maxwidth);
+
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
+
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[0]);
+                svg.appendChild(rect);
+
+                if (playerarr[p]["status"].includes("HGP") == false) {
+                    capspent += moneysum - dpoverage;
+                    capremaining -= moneysum - dpoverage;
+                }
             }
         } else {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("x","0");
-            svg.setAttribute("y","0");
-            svg.setAttribute("width",width);
-            svg.setAttribute("height",barheight);
-            parent.appendChild(svg);
+            if (playerarr[p]["buydown"]) {
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
 
-            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("width",widthsum);
-            rect.setAttribute("height",barheight);
-            rect.setAttribute("ry",barheight/2);
-            rect.setAttribute("style",colors[0]);
-            svg.appendChild(rect);
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                switch (playerarr[p]["buydown"]["mechanism"]) {
+                    case "TAM":
+                        rect.setAttribute("style",colors[2]);
+                        break;
+                    case "GAM":
+                        rect.setAttribute("style",colors[1]);
+                        break;
+                    default:
+                        rect.setAttribute("style",colors[3]);
+                }
+                svg.appendChild(rect);
 
-            if (playerarr[p]["status"].includes("HGP") == false) {
-                capspent += moneysum;
-                capremaining -= moneysum;
+                width -= interp(playerarr[p]["buydown"]["amount"],0,maxtamcharge,0,maxwidth);
+
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
+
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[0]);
+                svg.appendChild(rect);
+
+                if (playerarr[p]["buydown"]["mechanism"] == "GAM") {
+                    gamspent += playerarr[p]["buydown"]["amount"];
+                    gamremaining -= playerarr[p]["buydown"]["amount"];
+                } else if (playerarr[p]["buydown"]["mechanism"] == "TAM") {
+                    tamspent += playerarr[p]["buydown"]["amount"];
+                    tamremaining -= playerarr[p]["buydown"]["amount"];
+                }
+
+                if (playerarr[p]["status"].includes("HGP") == false && roster == "senior") {
+                    var caphit = moneysum - playerarr[p]["buydown"]["amount"];
+                    capspent += caphit;
+                    capremaining -= caphit;
+                }
+            } else {
+                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("x","0");
+                svg.setAttribute("y","0");
+                svg.setAttribute("width",width);
+                svg.setAttribute("height",barheight);
+                parent.appendChild(svg);
+
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("width",widthsum);
+                rect.setAttribute("height",barheight);
+                rect.setAttribute("ry",barheight/2);
+                rect.setAttribute("style",colors[0]);
+                svg.appendChild(rect);
+
+                if (playerarr[p]["status"].includes("HGP") == false) {
+                    capspent += moneysum;
+                    capremaining -= moneysum;
+                }
             }
         }
         statuscell = document.getElementById("status" + roster + "player" + (p+1));
