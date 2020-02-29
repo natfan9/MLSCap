@@ -123,8 +123,13 @@ tr:hover {
     background-color: #dddddd;
 }
 
-div.tables {
+div.tables,div.tbls {
     overflow-x: auto;
+}
+
+.tag {
+    font-weight: bold;
+    color: white;
 }
 
 * {

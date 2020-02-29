@@ -404,7 +404,32 @@ function createBreakdown(playerarr,roster) {
                 }
             }
         }
-        statuscell = document.getElementById("status" + roster + "player" + (p+1));
+        var statuscell = document.getElementById("status" + roster + "player" + (p+1));
+        var statuswidth = statuscell.offsetWidth - 10;
+        /*for (y in playerarr[p]["status"]) {
+            var newwidth = statuswidth / playerarr[p]["status"].length
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("x","0");
+            svg.setAttribute("y","0");
+            svg.setAttribute("width",newwidth);
+            svg.setAttribute("height",barheight);
+            statuscell.appendChild(svg);
+            
+            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("width",newwidth);
+            rect.setAttribute("height",barheight);
+            rect.setAttribute("ry",barheight/4);
+            rect.setAttribute("style","fill:#888888");
+            svg.appendChild(rect);
+
+            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x",newwidth/2);
+            text.setAttribute("y",barheight-5);
+            text.setAttribute("text-anchor","middle");
+            text.setAttribute("class","tag");
+            text.innerHTML = playerarr[p]["status"][y];
+            svg.appendChild(text);
+        }*/
         var playerstatus = "";
         for (y in playerarr[p]["status"]) {
             playerstatus += " " + playerarr[p]["status"][y] + " ";
