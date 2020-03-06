@@ -379,23 +379,59 @@ function createBreakdown(playerarr,roster) {
                     capremaining -= caphit;
                 }
             } else {
-                var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("x","0");
-                svg.setAttribute("y","0");
-                svg.setAttribute("width",width);
-                svg.setAttribute("height",barheight);
-                parent.appendChild(svg);
+                if (playerarr[p]["aquisition method"] == "General Allocation Money") {
+                    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.setAttribute("x","0");
+                    svg.setAttribute("y","0");
+                    svg.setAttribute("width",width);
+                    svg.setAttribute("height",barheight);
+                    parent.appendChild(svg);
 
-                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                rect.setAttribute("width",widthsum);
-                rect.setAttribute("height",barheight);
-                rect.setAttribute("ry",barheight/2);
-                rect.setAttribute("style",colors[0]);
-                svg.appendChild(rect);
+                    var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                    rect.setAttribute("width",widthsum);
+                    rect.setAttribute("height",barheight);
+                    rect.setAttribute("ry",barheight/2);
+                    rect.setAttribute("style",colors[1]);
+                    svg.appendChild(rect);
 
-                if (playerarr[p]["status"].includes("HGP") == false) {
-                    capspent += moneysum;
-                    capremaining -= moneysum;
+                    gamspent += moneysum;
+                    gamremaining -= moneysum;
+                } else if (playerarr[p]["aquisition method"] == "Targeted Allocation Money") {
+                    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.setAttribute("x","0");
+                    svg.setAttribute("y","0");
+                    svg.setAttribute("width",width);
+                    svg.setAttribute("height",barheight);
+                    parent.appendChild(svg);
+
+                    var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                    rect.setAttribute("width",widthsum);
+                    rect.setAttribute("height",barheight);
+                    rect.setAttribute("ry",barheight/2);
+                    rect.setAttribute("style",colors[2]);
+                    svg.appendChild(rect);
+
+                    tamspent += moneysum;
+                    tamremaining -= moneysum;
+                } else {
+                    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.setAttribute("x","0");
+                    svg.setAttribute("y","0");
+                    svg.setAttribute("width",width);
+                    svg.setAttribute("height",barheight);
+                    parent.appendChild(svg);
+
+                    var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                    rect.setAttribute("width",widthsum);
+                    rect.setAttribute("height",barheight);
+                    rect.setAttribute("ry",barheight/2);
+                    rect.setAttribute("style",colors[0]);
+                    svg.appendChild(rect);
+
+                    if (playerarr[p]["status"].includes("HGP") == false) {
+                        capspent += moneysum;
+                        capremaining -= moneysum;
+                    }
                 }
             }
         }

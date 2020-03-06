@@ -209,7 +209,7 @@
     "transfer fee": 1000000,
     "contract years": 4,
     "buydown": {
-        "amount": 600000,
+        "amount": 450000,
         "mechanism": "TAM"},
     "aquisition method": "unknown"},
 {"name": "Random Player 4",
