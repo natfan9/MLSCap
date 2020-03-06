@@ -73,22 +73,17 @@ function getPlayerData() {
         })
         var seniorplayers = [];
         var supplplayers = [];
-        var reserveplayers = [];
         for (y in newplayers) {
             if (newplayers[y]["roster"] == "senior") {
                 seniorplayers.push(newplayers[y]);
-            } else if (newplayers[y]["roster"] == "supplemental") {
+            } else if (newplayers[y]["roster"] == "supplemental" || newplayers[y]["roster"] == "reserve") {
                 supplplayers.push(newplayers[y]);
-            } else if (newplayers[y]["roster"] == "reserve") {
-                reserveplayers.push(newplayers[y]);
             }
         }
         recursiveRowsBreakdown(seniorplayers,"senior");
         recursiveRowsFutures(seniorplayers,"senior");
         recursiveRowsBreakdown(supplplayers,"supplemental");
         recursiveRowsFutures(supplplayers,"supplemental");
-        recursiveRowsBreakdown(reserveplayers,"reserve");
-        recursiveRowsFutures(reserveplayers,"reserve");
     }
 }
 
