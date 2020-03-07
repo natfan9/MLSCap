@@ -7,13 +7,27 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div class="sticky">
+        <!-- [Navbar and logo goes here] -->
+        <ul class="sitenav">
+            <li class="sitenav"><a href="rules.html">Rules</a></li>
+            <li class="sitenav">
+                <div class="dropdown">
+                    <button class="dropbtn">Teams</button>
+                    <div class="dropdown-content">
+                        <a href="index.html">Example</a>
+                    </div>
+                </div> 
+            </li>
+        </ul>
+    </div>
     <div class="main">
         <div class="header">
             <h1>Example Team</h1>
-            <ul>
-                <li><a href="index.html">Salaries</a></li>
-                <li><a href="transactions.html">Transactions</a></li>
-                <li><a href="gam.html">GAM</a></li>
+            <ul class="pagenav">
+                <li class="pagenav"><a href="index.html">Salaries</a></li>
+                <li class="pagenav"><a href="transactions.html">Transactions</a></li>
+                <li class="pagenav"><a href="gam.html">GAM</a></li>
             </ul>
             <!--Available Spend
             <svg height="20" width="500" class="svgheader" id="availablespend">
@@ -41,13 +55,30 @@
                     <th>Remaining</th>
                 </tr>
                 <tr>
-                    <td>GAM</td>
+                    <td>GAM
+                        <div class="tooltip">
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="#001f5b"></circle>
+                                <text fill="#ffffff" font-size="12" font-weight="bold" x="7" y="12" text-anchor="middle">?</text>
+                            </svg>
+                            <span class="smalltooltiptext"><a href="rules.html#GAM">Learn about GAM</a><br>
+                            </span>
+                        </div>
+                    </td>
                     <td id="GAMtotal"></td>
                     <td id="GAMspent"></td>
                     <td id="GAMremaining"></td>
                 </tr>
                 <tr>
-                    <td>Discretionary TAM</td>
+                    <td>Discretionary TAM
+                        <div class="tooltip">
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="#001f5b"></circle>
+                                <text fill="#ffffff" font-size="12" font-weight="bold" x="7" y="12" text-anchor="middle">?</text>
+                            </svg>
+                            <span class="tooltiptext"><a href="rules.html#TAM">Learn about TAM</a></span>
+                        </div>
+                    </td>
                     <td id="TAMtotal"></td>
                     <td id="TAMspent"></td>
                     <td id="TAMremaining"></td>
@@ -75,9 +106,9 @@
         </div>
         <div class="row">
         <div class="header col-12 col-s-12">
-        <ul>
-            <li><a onclick="switchTable('salarybreakdown',this)" id="default" class="tab">Current Year Buydowns</a></li>
-            <li><a onclick="switchTable('futures',this)" class="tab">Base Salaries</a></li>
+        <ul class="pagenav">
+            <li class="pagenav"><a onclick="switchTable('salarybreakdown',this)" id="default" class="tab">Current Year Buydowns</a></li>
+            <li class="pagenav"><a onclick="switchTable('futures',this)" class="tab">Base Salaries</a></li>
         </ul>
         </div>
         <div class="tables col-12 col-s-12" id="salarybreakdown">
@@ -85,7 +116,15 @@
                 <tr>
                     <th class="name">Senior Roster</th>
                     <th class="status">Status</th>
-                    <th class="salary">Cap Hit</th>
+                    <th class="salary">Cap Hit
+                        <div class="tooltip">
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="#001f5b"></circle>
+                                <text fill="#ffffff" font-size="12" font-weight="bold" x="7" y="12" text-anchor="middle">?</text>
+                            </svg>
+                            <span class="bigtooltiptext"><a href="rules.html#caphits">Learn about cap hits</a></span>
+                        </div>
+                    </th>
                     <th class="breakdown">Breakdown</th>
                 </tr>
                 <tr>
@@ -115,7 +154,15 @@
                 <tr>
                     <th class="name">Supplemental Roster</th>
                     <th class="status">Status</th>
-                    <th class="salary">Cap Hit</th>
+                    <th class="salary">Cap Hit
+                        <div class="tooltip">
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="#001f5b"></circle>
+                                <text fill="#ffffff" font-size="12" font-weight="bold" x="7" y="12" text-anchor="middle">?</text>
+                            </svg>
+                            <span class="bigtooltiptext"><a href="rules.html#caphits">Learn about cap hits</a></span>
+                        </div>
+                    </th>
                     <th class="breakdown">Breakdown</th>
                 </tr>
                 <tr>

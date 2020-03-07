@@ -7,14 +7,28 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div class="sticky">
+        <!-- [Navbar and logo goes here] -->
+        <ul class="sitenav">
+            <li class="sitenav"><a href="rules.html">Rules</a></li>
+            <li class="sitenav">
+                <div class="dropdown">
+                    <button class="dropbtn">Teams</button>
+                    <div class="dropdown-content">
+                        <a href="index.html">Example</a>
+                    </div>
+                </div> 
+            </li>
+        </ul>
+    </div>
     <div class="main">
         <div class="header">
             <h1>Example Team</h1>
-            <ul>
-                <li><a href="index.html">Salaries</a></li>
-                <li><a href="transactions.html">Transactions</a></li>
-                <li><a href="gam.html">GAM</a></li>
-            </ul>
+            <ul class="pagenav">
+                <li class="pagenav"><a href="index.html">Salaries</a></li>
+                <li class="pagenav"><a href="transactions.html">Transactions</a></li>
+                <li class="pagenav"><a href="gam.html">GAM</a></li>
+            </ul class="pagenav">
         </div>
     </div>
 </body>
