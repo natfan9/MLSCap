@@ -293,8 +293,10 @@ div.sticky {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 100px;
+    background-color: #ddd;
+    width: 100%;
+    max-width: 400px;
+    right: 0;
     z-index: 1;
 }
 
@@ -314,3 +316,23 @@ div.sticky {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #ddd;} 
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    background-color: #ddd;
+    height: auto;
+}
+
+.column a:hover {
+    background-color: #eee !important;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+      width: 50%;
+      height: auto;
+    }
+}
