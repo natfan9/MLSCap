@@ -339,3 +339,13 @@ div.sticky {
         max-width: none;
     }
 }
+
+button.backbutton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #eee;
+    color: #666;
+    padding: 10px;
+    border: none;
+}
